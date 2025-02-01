@@ -1,0 +1,33 @@
+Ejercicio #6
+def desglosar_cantidad(cantidad):
+    # Definimos los billetes y monedas disponibles
+    billetes_monedas = [500, 200, 100, 50, 20, 10, 5, 2, 1]
+    desglose = {}
+
+    for valor in billetes_monedas:
+        if cantidad >= valor:
+            num_billetes = cantidad // valor  # Número de billetes/monedas de este valor
+            cantidad -= num_billetes * valor   # Restamos el valor total de esos billetes/monedas
+            desglose[valor] = num_billetes      # Guardamos el número en el desglose
+
+    return desglose
+
+def main():
+    while True:
+        try:
+            cantidad = int(input("Introduce una cantidad entera en euros: "))
+            if cantidad < 0:
+                print("Por favor, introduce un número entero positivo.")
+                continue
+            break
+        except ValueError:
+            print("Entrada no válida. Debes introducir un número entero.")
+
+    desglose = desglosar_cantidad(cantidad)
+
+    print("\nDesglose de la cantidad en billetes y monedas:")
+    for valor, cantidad in desglose.items():
+        print(f"{cantidad} billete(s)/moneda(s) de {valor} euros")
+
+if __name__ == "__main__":
+    main()
